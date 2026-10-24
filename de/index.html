@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Teste Teclado">
+  <meta name="theme-color" content="#070b14">
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSI+CiAgPHJlY3QgeD0iMiIgeT0iMiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiByeD0iMTQiIGZpbGw9IiMyNTYzRUIiIHN0cm9rZT0iIzYwQTVGQSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPHJlY3QgeD0iMTAiIHk9IjE3IiB3aWR0aD0iNDQiIGhlaWdodD0iMzAiIHJ4PSI2IiBmaWxsPSIjMEYxNzJBIiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMyIvPgogIDxyZWN0IHg9IjE1IiB5PSIyMiIgd2lkdGg9IjYiIGhlaWdodD0iNSIgcng9IjEuNSIgZmlsbD0iI0ZGRkZGRiIvPgogIDxyZWN0IHg9IjI0IiB5PSIyMiIgd2lkdGg9IjYiIGhlaWdodD0iNSIgcng9IjEuNSIgZmlsbD0iIzM4QkRGOCIvPgogIDxyZWN0IHg9IjMzIiB5PSIyMiIgd2lkdGg9IjYiIGhlaWdodD0iNSIgcng9IjEuNSIgZmlsbD0iI0ZGRkZGRiIvPgogIDxyZWN0IHg9IjQyIiB5PSIyMiIgd2lkdGg9IjciIGhlaWdodD0iNSIgcng9IjEuNSIgZmlsbD0iI0ZGRkZGRiIvPgogIDxyZWN0IHg9IjE1IiB5PSIzMCIgd2lkdGg9IjYiIGhlaWdodD0iNSIgcng9IjEuNSIgZmlsbD0iI0ZGRkZGRiIvPgogIDxyZWN0IHg9IjI0IiB5PSIzMCIgd2lkdGg9IjYiIGhlaWdodD0iNSIgcng9IjEuNSIgZmlsbD0iI0ZGRkZGRiIvPgogIDxyZWN0IHg9IjMzIiB5PSIzMCIgd2lkdGg9IjYiIGhlaWdodD0iNSIgcng9IjEuNSIgZmlsbD0iI0ZGRkZGRiIvPgogIDxyZWN0IHg9IjQyIiB5PSIzMCIgd2lkdGg9IjciIGhlaWdodD0iNSIgcng9IjEuNSIgZmlsbD0iIzEwQjk4MSIvPgogIDxyZWN0IHg9IjIwIiB5PSIzOCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjQuNSIgcng9IjEuNSIgZmlsbD0iI0ZGRkZGRiIvPgo8L3N2Zz4=" />
+  <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA9UlEQVR4nGNgGGDAiEsiYemv/9S0aEE0G1a7MARhFh/d95Ga9jNYO/FjdQgKJ2Hpr//UthibQ5AdwURPyxkYICGLHL1M+BTTAzAxMNDP9zCAHAoDHgIsuCRuzRGhqkVqKW+Id8CtOSIMAhLaVHXAhxdXsTpi8EYBAwPE1cjAct9PFP5xJ3a8hhMTigMeAgPuALxRgA4IBTk5YMBDYMAdgDcKqF0WYAODOwRgAL08IBaMlgPEAKKigJaJEasD1FLekB3vuABJ1TE+DdQGA54GmBgYIG11WLudHgC5aT44QoCBgX6hgN4xGVxdM2wOoRbA1TkdcAAARmZUDyBnLdkAAAAASUVORK5CYII=" />
+  <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA9UlEQVR4nGNgGGDAiEsiYemv/9S0aEE0G1a7MARhFh/d95Ga9jNYO/FjdQgKJ2Hpr//UthibQ5AdwURPyxkYICGLHL1M+BTTAzAxMNDP9zCAHAoDHgIsuCRuzRGhqkVqKW+Id8CtOSIMAhLaVHXAhxdXsTpi8EYBAwPE1cjAct9PFP5xJ3a8hhMTigMeAgPuALxRgA4IBTk5YMBDYMAdgDcKqF0WYAODOwRgAL08IBaMlgPEAKKigJaJEasD1FLekB3vuABJ1TE+DdQGA54GmBgYIG11WLudHgC5aT44QoCBgX6hgN4xGVxdM2wOoRbA1TkdcAAARmZUDyBnLdkAAAAASUVORK5CYII=" />
+  <link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAFK0lEQVR4nO3cMU4cMRiGYRNFtKSgyAmQonRp6ThGaCg4FgUNOQYdbToUiRNQUEBLQ6qRRhvC2jO/7c/fvE8ZoV1r/OL8uzNJSgAAAAAAAAAAAAC256D3Akpc3Ly+9V7DFl2fHw7TifRCCViTcuByCyPisajFLbEYIvagEHfXBRCyp55hf+r1xsTsq+feNv9NIuRtaX1aN32ziJjvbl8iloJMp2dHq1+jZdRN3mhNyASsZU3gLcKu/gZLYibiMSyJu3bUVV+8NGZCHlNp2DWjrvbCJTETsoeSsGtFXeVFc2MmZE+5YdeIOvx7aGJG7t7W+Ao3NGhixqRX1GFHfs7CCHmbckaQqPGj2a1vYt6ulnsfEvS+05mYsa+BqNFjddA8m4EoES1VHzk4nTFp0cKqoBk1UKr26LE4aGLGUjWj7vaAP1DDoqA5nbFWrVOaExpWwoPmdEauGq0UB833zmhlSWuhJzSnM0pFN8MMDStFQTNuoLXS5sJOaMYNLBXZDiMHrBA0rGQHzfyMXkraCzmhmZ+xVlRDjBywQtCwQtCwQtCwQtCw8rn3Ako8XB33XsImnVw+9V5CNvmgibi/+R6oxy09chCzHvU9kTyh1S/a1k37o3hay53QxDwOxb2SClrxAuFjansmFTSwlkzQar/pyKe0dxIfCksuyJev3yuuBLueH++zfu7h6ljiQ6JE0DkIuY/puueG3ZvMyPERYu5vlD3oHrTS/IV1FPaye9D7jHIybMEIeyEfNFBimA+FKcV+MHnvtPn263fY6//5+eOfP6u9/tqvPwJOaFghaFghaFghaFghaFghaFghaFghaFghaFghaFghaFghaFghaFgZ6mm72k+AvfeEXKTa6x/1CblInNCwQtCwQtCwQtCwMtSHwtH/CdPorz8CTmhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYGeppu9H/CdPorz8CTmhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYGerWd4nI/3TFkettck5oWCFoWCFoWCFoWCFoWCFoWCFoWCFoWCFoWCFoWCFoWCFoWCFoWJF/2u758X7Rk2GuT5P1NMITjN1P6JPLp95LQBCFvewedI4RTgZ3o+yB/MgxmS4oo0Rbo4Q8kQj65PIpPVwdZ/3saBd4KxTGjZSERg6VC4JySnsnEzQQQSpopd905FHbM6mgU9K7QPg/xb2S+FC4a7pQuR8U0ZZiyBO5E3pO+cJtlfqeSJ7Qc/MLyIndh3rEc/JBz410YdGH9MgBlAoJ+vTsKOJlsGFRDWUHfX1+eBDyjkChkvYYOWCFoGElLGjmaCwV2U5R0MzRaK20OUYOWAkNmrEDpaKbKQ6asQOtLGktfOTglEauGq0wQ8PKoqD3/VXAKY199jWydLTlhIaVxUFzSmOpWqdzSitPaKJGqZoxp9Rg5CBqTFq0sDpovpdGlIiWQk5oRg/sU3vUmDT7loOot6vl3oeOCxc3r285P3d3+xL5thCVG3Lk2Bp6QucujNPaX4+YU6owchA1esWcUvDIMZc7fqTECOKi5JCq9e1Y1a/cSqJOibBHVfq3bc2veqt/h1wadUqEPYolY2Pt+xZNboosiXpC3FrWfPZpcROu6V2+NWFPCLytiA/vLe8mN79tHRE1xtH60Yhuz2EQtrdez/h0e8Cfh5p89dxbiag4rT0oHFLdF7CLuMeiEPGc1GJ2EbcmtYjnZBf2HgLvQzlgAAAAAAAAAAAAAEjpL44/o8iyfIpSAAAAAElFTkSuQmCC" />
+  <title>Tastatur-Test Online Kostenlos — Tasten Prüfen (PC)</title>
+  <meta name="description" content="Teste de teclado online grátis em Português (ABNT2 e ANSI). Verifique teclas de PC, notebook e celular em tempo real sem instalar programas.">
+  <meta name="keywords" content="teste de teclado, testar teclado online, teste de teclado online, teclado abnt2 teste, testar teclas do notebook, teste de teclado mecanico, keyboard test portugues">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://testeteclado.online/de/" />
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://testeteclado.online/de/">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Tastatur-Test Online Kostenlos — Tasten Prüfen (PC)">
+  <meta property="og:description" content="Testen Sie Ihre Tastaturtasten online in Echtzeit. Kompatibel mit ABNT2 (Ç) und ANSI. Funktioniert auf PC, Laptop und Mobilgerät ohne Installation.">
+  <link rel="alternate" hreflang="pt-BR" href="https://testeteclado.online/pt/" />
+  <link rel="alternate" hreflang="en" href="https://testeteclado.online/en/" />
+  <link rel="alternate" hreflang="es" href="https://testeteclado.online/es/" />
+  <link rel="alternate" hreflang="fr" href="https://testeteclado.online/fr/" />
+  <link rel="alternate" hreflang="de" href="https://testeteclado.online/de/" />
+  <link rel="alternate" hreflang="it" href="https://testeteclado.online/it/" />  <meta property="og:image" content="https://testeteclado.online/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tastatur-Test Online Kostenlos — Tasten Prüfen (PC)">
+  <meta name="twitter:description" content="Testen Sie Ihre Tastaturtasten online in Echtzeit. Kompatibel mit ABNT2 (Ç) und ANSI. Funktioniert auf PC, Laptop und Mobilgerät ohne Installation.">
+  <meta name="twitter:image" content="https://testeteclado.online/og-image.svg">
+  <link rel="alternate" hreflang="x-default" href="https://testeteclado.online/" />
+
+  <style>
+    :root {
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    * {
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+      transition: background-color 0.4s var(--ease-smooth), color 0.3s ease;
+    }
+
+    /* Studio Ambient Stage (Dark & Light Mode) */
+    .dark body {
+      background-color: #060911;
+      background-image:
+        radial-gradient(circle at 50% 18%, rgba(37, 99, 235, 0.18) 0%, transparent 52%),
+        radial-gradient(circle at 50% 55%, rgba(15, 23, 42, 0.9) 0%, #060911 85%);
+      color: #f8fafc;
+    }
+    html:not(.dark) body {
+      background-color: #eef2f6;
+      background-image:
+        radial-gradient(circle at 50% 18%, rgba(59, 130, 246, 0.12) 0%, transparent 52%),
+        radial-gradient(circle at 50% 55%, #ffffff 0%, #e2e8f0 90%);
+      color: #0f172a;
+    }
+
+    /* Title Styling */
+    .title-glow {
+      transition: transform 0.25s var(--ease-spring), filter 0.3s ease;
+    }
+    .title-glow:hover {
+      transform: translateY(-1px);
+    }
+    html:not(.dark) #uiMainHeading {
+      background: linear-gradient(180deg, #0f172a 0%, #334155 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .dark #uiMainHeading {
+      background: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* CNC Machined Aluminum Keyboard Outer Chassis */
+    .cnc-keyboard-case {
+      position: relative;
+      border-radius: 24px;
+      padding: 18px 20px 22px 20px;
+      transition: all 0.4s var(--ease-smooth);
+      animation: chassisEntrance 0.6s var(--ease-smooth) both;
+    }
+    .dark .cnc-keyboard-case {
+      background: linear-gradient(180deg, #161f30 0%, #0d131f 100%);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      box-shadow:
+        0 30px 70px -12px rgba(0, 0, 0, 0.85),
+        0 10px 0 #070b12,
+        0 11px 0 rgba(255, 255, 255, 0.06),
+        inset 0 1px 1px rgba(255, 255, 255, 0.12);
+    }
+    html:not(.dark) .cnc-keyboard-case {
+      background: linear-gradient(180deg, #f8fafc 0%, #cbd5e1 100%);
+      border: 1px solid #94a3b8;
+      box-shadow:
+        0 28px 60px -12px rgba(15, 23, 42, 0.22),
+        0 10px 0 #94a3b8,
+        0 11px 0 rgba(15, 23, 42, 0.15),
+        inset 0 2px 1px #ffffff;
+    }
+
+    /* Recessed Switch Plate Well */
+    .switch-plate {
+      border-radius: 14px;
+      padding: 12px;
+      transition: all 0.35s var(--ease-smooth);
+    }
+    .dark .switch-plate {
+      background: #080c14;
+      border: 1px solid rgba(30, 41, 59, 0.9);
+      box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.85);
+    }
+    html:not(.dark) .switch-plate {
+      background: #1e293b;
+      border: 1px solid #0f172a;
+      box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.55);
+    }
+
+    /* Sculpted PBT 3D Keycaps */
+    .keycap {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 11.5px;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      padding: 3px 4px;
+      touch-action: manipulation;
+      will-change: transform, box-shadow, background;
+      transition:
+        transform 0.1s var(--ease-spring),
+        background 0.14s ease,
+        border-color 0.14s ease,
+        box-shadow 0.14s ease,
+        color 0.12s ease;
+    }
+
+    /* Untested Alpha Keys */
+    .dark .keycap-untested {
+      background: linear-gradient(180deg, #263449 0%, #1b2536 100%);
+      color: #e2e8f0;
+      border: 1px solid #334155;
+      box-shadow:
+        0 4px 0 #090d16,
+        0 5px 7px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    html:not(.dark) .keycap-untested {
+      background: linear-gradient(180deg, #475569 0%, #334155 100%);
+      color: #f8fafc;
+      border: 1px solid #64748b;
+      box-shadow:
+        0 4px 0 #0f172a,
+        0 5px 7px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    /* Modifier Key Accent Subtle Contrast */
+    .dark .keycap-mod.keycap-untested {
+      background: linear-gradient(180deg, #1e293b 0%, #141c2b 100%);
+      color: #94a3b8;
+      border-color: #293548;
+    }
+    html:not(.dark) .keycap-mod.keycap-untested {
+      background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+      color: #cbd5e1;
+      border-color: #475569;
+    }
+
+    .keycap-untested:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.12);
+    }
+
+    /* Active (Pressed Down) State — Electric Sapphire Glow */
+    .keycap-active {
+      background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%) !important;
+      color: #ffffff !important;
+      border: 1px solid #93c5fd !important;
+      box-shadow:
+        0 1px 0 #1d4ed8,
+        0 0 22px rgba(59, 130, 246, 0.9),
+        inset 0 1px 1px rgba(255, 255, 255, 0.45) !important;
+      transform: translateY(3px) scale(0.97);
+      z-index: 10;
+    }
+
+    /* Tested (Released & Verified) State — Illuminated Pearl White */
+    .keycap-tested {
+      background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%) !important;
+      color: #0f172a !important;
+      border: 1px solid #cbd5e1 !important;
+      box-shadow:
+        0 4px 0 #64748b,
+        0 0 14px rgba(255, 255, 255, 0.28),
+        inset 0 1px 0 #ffffff !important;
+    }
+
+    /* Chatter Warning State */
+    .keycap-chatter {
+      background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%) !important;
+      color: #0f172a !important;
+      border: 1px solid #fde68a !important;
+      box-shadow:
+        0 4px 0 #b45309,
+        0 0 16px rgba(245, 158, 11, 0.6) !important;
+    }
+
+    /* Smooth Key Ripple & Entrance Animations */
+    @keyframes keyRipple {
+      0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.75); }
+      100% { box-shadow: 0 0 0 12px rgba(59, 130, 246, 0); }
+    }
+    .key-ripple-anim {
+      animation: keyRipple 0.34s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes chassisEntrance {
+      0% { opacity: 0; transform: translateY(16px) scale(0.985); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Hardware Indicator LEDs on Chassis */
+    .led-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 9999px;
+      transition: all 0.25s ease;
+    }
+    .led-on {
+      background-color: #38bdf8;
+      box-shadow: 0 0 8px #38bdf8, 0 0 14px rgba(56, 189, 248, 0.8);
+    }
+    .led-off {
+      background-color: #475569;
+      opacity: 0.35;
+    }
+
+    .keyboard-scroll-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+    .keyboard-chassis {
+      min-width: 960px;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    ::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(100, 116, 139, 0.35);
+      border-radius: 9999px;
+    }
+  </style>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between py-8 sm:py-12 px-3 sm:px-6 selection:bg-blue-600 selection:text-white">
+
+  <!-- Top Center: Only the Title -->
+  <header class="w-full flex justify-center items-center pt-2 pb-4">
+    <h1 class="title-glow inline-flex items-center gap-3 text-2xl sm:text-4xl font-extrabold tracking-tight cursor-pointer" onclick="toggleTheme()" title="Teste de Teclado Online">
+      <span class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-600/35 border border-blue-400/40 shrink-0">
+        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="3" ry="3"></rect>
+          <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M6 12h.01M10 12h.01M14 12h.01M18 12h.01M8 16h8"></path>
+        </svg>
+      </span>
+      <span id="uiMainHeading">Tastatur-Test Online</span>
+    </h1>
+  </header>
+
+  <!-- Main Center: Only the Keyboard -->
+  <main class="flex-1 w-full max-w-6xl flex items-center justify-center my-auto">
+    <div id="keyboardScrollWrapper" class="keyboard-scroll-wrapper">
+      <div class="cnc-keyboard-case keyboard-chassis">
+        <!-- Subtle Hardware Status LEDs integrated into the top-right bezel of the physical keyboard -->
+        <div class="flex items-center justify-between px-2 pb-3">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-blue-500/80 shadow-[0_0_8px_#3b82f6]"></span>
+            <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-slate-400/80 font-semibold">ABNT2 / ANSI PRO</span>
+          </div>
+          <div class="flex items-center gap-4 text-[9px] font-mono tracking-widest text-slate-400/80">
+            <div class="flex items-center gap-1.5">
+              <span id="ledNumLock" class="led-dot led-on"></span>
+              <span>NUM</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span id="ledCapsLock" class="led-dot led-off"></span>
+              <span>CAPS</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span id="ledScrollLock" class="led-dot led-off"></span>
+              <span>SCR</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recessed Mechanical Switch Plate -->
+        <div class="switch-plate">
+          <div id="keyboardMount" class="select-none">
+            <!-- Populated dynamically by renderKeyboard() -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer w-full mx-auto px-3 sm:px-6 pb-8 max-w-6xl">
+    <nav class="border-t border-slate-800 pt-6 flex flex-wrap gap-x-4 gap-y-2 items-center text-xs" aria-label="Site">
+      <a href="/" class="text-slate-300 hover:text-blue-400">Teste de Teclado</a>
+      <a href="/abnt2-ou-ansi/" class="text-slate-300 hover:text-blue-400">ABNT2 ou ANSI?</a>
+      <a href="/teclado-com-chatter/" class="text-slate-300 hover:text-blue-400">Teclado com Chatter</a>
+      <a href="/como-testar-teclado-mecanico/" class="text-slate-300 hover:text-blue-400">Testar Teclado Mecânico</a>
+      <a href="/teste-anti-ghosting/" class="text-slate-300 hover:text-blue-400">Teste Anti-Ghosting</a>
+      <a href="/teste-teclado-notebook/" class="text-slate-300 hover:text-blue-400">Testar Teclado Notebook</a>
+      <a href="/teste-de-mouse/" class="text-slate-300 hover:text-blue-400">Teste de Mouse</a>
+      <a href="/sobre.html" class="text-slate-300 hover:text-blue-400">Sobre</a>
+      <a href="/privacidade.html" class="text-slate-300 hover:text-blue-400">Privacidade</a>
+      <a href="/termos.html" class="text-slate-300 hover:text-blue-400">Termos</a>
+      <a href="/contato.html" class="text-slate-300 hover:text-blue-400">Contato</a>
+    </nav>
+    <p class="mt-3 text-slate-400/80 text-[10px]">&copy; 2026 testeteclado.online</p>
+  </footer>
+
+
+  
+  <section class="w-full max-w-3xl mx-auto mt-8 px-4 pb-8" aria-label="Über dieses Tool">
+    <h2 class="text-lg font-bold mb-3">So testen Sie Ihre Tastatur</h2>
+    <p class="text-sm leading-relaxed opacity-75 mb-4">
+      Drücken Sie eine beliebige Taste auf Ihrer physischen Tastatur oder tippen Sie auf den Mobile-Screen — die virtuelle Tastatur auf dieser Seite markiert jede Taste in Echtzeit.
+      Unterstützt sowohl ABNT2 (Brasilianischer Standard, mit Ç-Taste) als auch ANSI (US-Standard), kompatibel mit PC, Laptop und mobilen Geräten.
+    </p>
+    <h2 class="text-lg font-bold mb-3">Funktionen</h2>
+    <ul class="text-sm leading-relaxed opacity-75 space-y-1 mb-4">
+      <li>• <strong>Echtzeit-Erkennung</strong>：Tasten leuchten sofort beim Drücken auf, volle Anti-Ghosting-Testunterstützung.</li>
+      <li>• <strong>ABNT2 / ANSI Dual-Layout</strong>：Automatische Anpassung an regionale Tastaturstandards; brasilianische Nutzer erhalten das ABNT2-Layout mit Ç-Taste.</li>
+      <li>• <strong>Mechanischer Klangeffekt</strong>：Spielt einen mechanischen Switch-Klicksound bei jederBetätigung.</li>
+      <li>• <strong>Chatter-Erkennung</strong>：Erkennt automatisch Tasten mit Prellen und markiert problematische Tasten gelb.</li>
+      <li>• <strong>LED-Anzeige</strong>：Echtzeit-Anzeige der NUM, CAPS und SCR Hardware-Indikatoren.</li>
+      <li>• <strong>Dunkel / Hellmodus</strong>：Klicken Sie auf den Titel zum Wechseln des Themas, mit System-Dark-Mode-Unterstützung.</li>
+    </ul>
+    <h2 class="text-lg font-bold mb-3">Häufige Fragen</h2>
+    <div class="text-sm leading-relaxed opacity-75 space-y-2">
+      <p><strong>F: Warum reagieren einige Tasten nicht?</strong><br>
+      Browser-Berechtigungseinschränkungen möglich. Stellen Sie sicher, dass die Seite fokussiert ist. Einige virtuelle Tastaturen oder Remote-Desktops intercepten Tastendrücke.</p>
+      <p><strong>F: Welche Geräte und Systeme werden unterstützt?</strong><br>
+      Windows, macOS, Linux Desktop sowie iOS und Android Mobile-Browser.</p>
+      <p><strong>F: Ist das privat und sicher?</strong><br>
+      Völlig sicher. Alle Tastenverarbeitungen erfolgen lokal im Browser — keine Daten werden hochgeladen, keine Software-Installation erforderlich.</p>
+    </div>
+  </section>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tastatur-Test Online",
+    "description": "Kostenloses online Tastatur-Test-Tool mit ABNT2 und ANSI Support für PC, Laptop und Mobilgerät. Echtzeit-Erkennung und Chatter-Debugging.",
+    "url": "https://testeteclado.online/de/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "inLanguage": "de",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    }
+  }
+  </script>
+
+<!-- SEO Content Section -->
+  <section class="w-full max-w-3xl mx-auto mt-8 px-4 pb-8" aria-label="Über dieses Tool">
+    <h2 class="text-lg font-bold mb-3">So testen Sie Ihre Tastatur</h2>
+    <p class="text-sm leading-relaxed opacity-75 mb-4">
+      Drücken Sie eine beliebige Taste auf Ihrer physischen Tastatur oder tippen Sie auf den Mobile-Screen — die virtuelle Tastatur auf dieser Seite markiert jede Taste in Echtzeit.
+      Unterstützt sowohl ABNT2 (Brasilianischer Standard, mit Ç-Taste) als auch ANSI (US-Standard), kompatibel mit PC, Laptop und mobilen Geräten.
+    </p>
+    <h2 class="text-lg font-bold mb-3">Funktionen</h2>
+    <ul class="text-sm leading-relaxed opacity-75 space-y-1 mb-4">
+      <li>• <strong>Echtzeit-Erkennung</strong>：Tasten leuchten sofort beim Drücken auf, volle Anti-Ghosting-Testunterstützung.</li>
+      <li>• <strong>ABNT2 / ANSI Dual-Layout</strong>：Automatische Anpassung an regionale Tastaturstandards; brasilianische Nutzer erhalten das ABNT2-Layout mit Ç-Taste.</li>
+      <li>• <strong>Mechanischer Klangeffekt</strong>：Spielt einen mechanischen Switch-Klicksound bei jederBetätigung.</li>
+      <li>• <strong>Chatter-Erkennung</strong>：Erkennt automatisch Tasten mit Prellen und markiert problematische Tasten gelb.</li>
+      <li>• <strong>LED-Anzeige</strong>：Echtzeit-Anzeige der NUM, CAPS und SCR Hardware-Indikatoren.</li>
+      <li>• <strong>Dunkel / Hellmodus</strong>：Klicken Sie auf den Titel zum Wechseln des Themas, mit System-Dark-Mode-Unterstützung.</li>
+    </ul>
+    <h2 class="text-lg font-bold mb-3">Häufige Fragen</h2>
+    <div class="text-sm leading-relaxed opacity-75 space-y-2">
+      <p><strong>F: Warum reagieren einige Tasten nicht?</strong><br>
+      Browser-Berechtigungseinschränkungen möglich. Stellen Sie sicher, dass die Seite fokussiert ist. Einige virtuelle Tastaturen oder Remote-Desktops intercepten Tastendrücke.</p>
+      <p><strong>F: Welche Geräte und Systeme werden unterstützt?</strong><br>
+      Windows, macOS, Linux Desktop sowie iOS und Android Mobile-Browser.</p>
+      <p><strong>F: Ist das privat und sicher?</strong><br>
+      Völlig sicher. Alle Tastenverarbeitungen erfolgen lokal im Browser — keine Daten werden hochgeladen, keine Software-Installation erforderlich.</p>
+    </div>
+  </section>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tastatur-Test Online",
+    "description": "Kostenloses online Tastatur-Test-Tool mit ABNT2 und ANSI Support für PC, Laptop und Mobilgerät. Echtzeit-Erkennung und Chatter-Debugging.",
+    "url": "https://testeteclado.online/de/",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "inLanguage": "de",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    }
+  }
+  </script>
+
+  <div class="h-4"></div>
+
+  <script>
+    const ABNT2_MAIN_ROWS = [
+      [
+        { code: 'Escape', top: 'Esc', w: 1, mod: true },
+        { spacer: 0.5 },
+        { code: 'F1', top: 'F1', w: 1 },
+        { code: 'F2', top: 'F2', w: 1 },
+        { code: 'F3', top: 'F3', w: 1 },
+        { code: 'F4', top: 'F4', w: 1 },
+        { spacer: 0.25 },
+        { code: 'F5', top: 'F5', w: 1 },
+        { code: 'F6', top: 'F6', w: 1 },
+        { code: 'F7', top: 'F7', w: 1 },
+        { code: 'F8', top: 'F8', w: 1 },
+        { spacer: 0.25 },
+        { code: 'F9', top: 'F9', w: 1 },
+        { code: 'F10', top: 'F10', w: 1 },
+        { code: 'F11', top: 'F11', w: 1 },
+        { code: 'F12', top: 'F12', w: 1 }
+      ],
+      [
+        { code: 'Backquote', top: '"', sub: "'", w: 1 },
+        { code: 'Digit1', top: '1', sub: '!', w: 1 },
+        { code: 'Digit2', top: '2', sub: '@', w: 1 },
+        { code: 'Digit3', top: '3', sub: '#', w: 1 },
+        { code: 'Digit4', top: '4', sub: '$', w: 1 },
+        { code: 'Digit5', top: '5', sub: '%', w: 1 },
+        { code: 'Digit6', top: '6', sub: '¨', w: 1 },
+        { code: 'Digit7', top: '7', sub: '&', w: 1 },
+        { code: 'Digit8', top: '8', sub: '*', w: 1 },
+        { code: 'Digit9', top: '9', sub: '(', w: 1 },
+        { code: 'Digit0', top: '0', sub: ')', w: 1 },
+        { code: 'Minus', top: '_', sub: '-', w: 1 },
+        { code: 'Equal', top: '+', sub: '=', w: 1 },
+        { code: 'Backspace', top: '⟵ Backspace', w: 2, mod: true }
+      ],
+      [
+        { code: 'Tab', top: 'Tab ⇥', w: 1.5, mod: true },
+        { code: 'KeyQ', top: 'Q', w: 1 },
+        { code: 'KeyW', top: 'W', w: 1 },
+        { code: 'KeyE', top: 'E', w: 1 },
+        { code: 'KeyR', top: 'R', w: 1 },
+        { code: 'KeyT', top: 'T', w: 1 },
+        { code: 'KeyY', top: 'Y', w: 1 },
+        { code: 'KeyU', top: 'U', w: 1 },
+        { code: 'KeyI', top: 'I', w: 1 },
+        { code: 'KeyO', top: 'O', w: 1 },
+        { code: 'KeyP', top: 'P', w: 1 },
+        { code: 'BracketLeft', top: '`', sub: '´', w: 1 },
+        { code: 'BracketRight', top: '{', sub: '[', w: 1 },
+        { code: 'Enter', top: 'ENTER ↵', w: 1.5, mod: true }
+      ],
+      [
+        { code: 'CapsLock', top: 'Caps Lock', w: 1.7, mod: true },
+        { code: 'KeyA', top: 'A', w: 1 },
+        { code: 'KeyS', top: 'S', w: 1 },
+        { code: 'KeyD', top: 'D', w: 1 },
+        { code: 'KeyF', top: 'F', w: 1 },
+        { code: 'KeyG', top: 'G', w: 1 },
+        { code: 'KeyH', top: 'H', w: 1 },
+        { code: 'KeyJ', top: 'J', w: 1 },
+        { code: 'KeyK', top: 'K', w: 1 },
+        { code: 'KeyL', top: 'L', w: 1 },
+        { code: 'Semicolon', top: 'Ç', w: 1 },
+        { code: 'Quote', top: '^', sub: '~', w: 1 },
+        { code: 'Backslash', top: '}', sub: ']', w: 1 },
+        { code: 'Enter', top: '↵', w: 1.3, mod: true }
+      ],
+      [
+        { code: 'ShiftLeft', top: '⇧ Shift', w: 1.4, mod: true },
+        { code: 'IntlBackslash', top: '|', sub: '\\', w: 1 },
+        { code: 'KeyZ', top: 'Z', w: 1 },
+        { code: 'KeyX', top: 'X', w: 1 },
+        { code: 'KeyC', top: 'C', w: 1 },
+        { code: 'KeyV', top: 'V', w: 1 },
+        { code: 'KeyB', top: 'B', w: 1 },
+        { code: 'KeyN', top: 'N', w: 1 },
+        { code: 'KeyM', top: 'M', w: 1 },
+        { code: 'Comma', top: '<', sub: ',', w: 1 },
+        { code: 'Period', top: '>', sub: '.', w: 1 },
+        { code: 'Slash', top: ':', sub: ';', w: 1 },
+        { code: 'IntlRo', top: '?', sub: '/', w: 1 },
+        { code: 'ShiftRight', top: 'Shift ⇧', w: 1.6, mod: true }
+      ],
+      [
+        { code: 'ControlLeft', top: 'Ctrl', w: 1.4, mod: true },
+        { code: 'MetaLeft', top: 'Win', w: 1.2, mod: true },
+        { code: 'AltLeft', top: 'Alt', w: 1.4, mod: true },
+        { code: 'Space', top: '', w: 6.2 },
+        { code: 'AltRight', top: 'Alt Gr', w: 1.4, mod: true },
+        { code: 'MetaRight', top: 'Win', w: 1.1, mod: true },
+        { code: 'ContextMenu', top: 'Menu', w: 1.1, mod: true },
+        { code: 'ControlRight', top: 'Ctrl', w: 1.2, mod: true }
+      ]
+    ];
+
+    const NAV_AND_NUMPAD_ROWS = [
+      [
+        { code: 'PrintScreen', top: 'PrtSc', w: 1, mod: true },
+        { code: 'ScrollLock', top: 'ScrLk', w: 1, mod: true },
+        { code: 'Pause', top: 'Pause', w: 1, mod: true },
+        { spacer: 0.25 },
+        { code: 'Home', top: 'Home', w: 1.85, mod: true },
+        { code: 'End', top: 'End', w: 1.85, mod: true }
+      ],
+      [
+        { code: 'PageUp', top: 'PgUp', w: 1.5, mod: true },
+        { spacer: 0.25 },
+        { code: 'NumLock', top: 'Num', w: 1.25, mod: true },
+        { code: 'NumpadDivide', top: '÷', w: 1.25, mod: true },
+        { code: 'NumpadMultiply', top: '×', w: 1.25, mod: true },
+        { code: 'NumpadSubtract', top: '−', w: 1.25, mod: true }
+      ],
+      [
+        { code: 'PageDown', top: 'PgDn', w: 1.5, mod: true },
+        { spacer: 0.25 },
+        { code: 'Numpad7', top: '7', sub: 'Home', w: 1.25 },
+        { code: 'Numpad8', top: '8', sub: '↑', w: 1.25 },
+        { code: 'Numpad9', top: '9', sub: 'PgUp', w: 1.25 },
+        { code: 'NumpadAdd', top: '+', w: 1.25, mod: true }
+      ],
+      [
+        { code: 'Insert', top: 'Ins', w: 1.5, mod: true },
+        { spacer: 0.25 },
+        { code: 'Numpad4', top: '4', sub: '←', w: 1.25 },
+        { code: 'Numpad5', top: '5', w: 1.25 },
+        { code: 'Numpad6', top: '6', sub: '→', w: 1.25 },
+        { code: 'NumpadComma', top: '.', w: 1.25 }
+      ],
+      [
+        { code: 'Delete', top: 'Del', w: 0.75, mod: true },
+        { code: 'ArrowUp', top: '▲', w: 0.75, mod: true },
+        { spacer: 0.25 },
+        { code: 'Numpad1', top: '1', sub: 'End', w: 1.25 },
+        { code: 'Numpad2', top: '2', sub: '↓', w: 1.25 },
+        { code: 'Numpad3', top: '3', sub: 'PgDn', w: 1.25 },
+        { code: 'NumpadEnter', top: 'Enter', w: 1.25, mod: true }
+      ],
+      [
+        { code: 'ArrowLeft', top: '◄', w: 0.5, mod: true },
+        { code: 'ArrowDown', top: '▼', w: 0.5, mod: true },
+        { code: 'ArrowRight', top: '►', w: 0.5, mod: true },
+        { spacer: 0.25 },
+        { code: 'Numpad0', top: '0', sub: 'Ins', w: 2.5 },
+        { code: 'NumpadDecimal', top: ',', sub: 'Del', w: 2.5 }
+      ]
+    ];
+
+    const CHAR_TO_CODE_MAP = {
+      'a': 'KeyA', 'b': 'KeyB', 'c': 'KeyC', 'd': 'KeyD', 'e': 'KeyE',
+      'f': 'KeyF', 'g': 'KeyG', 'h': 'KeyH', 'i': 'KeyI', 'j': 'KeyJ',
+      'k': 'KeyK', 'l': 'KeyL', 'm': 'KeyM', 'n': 'KeyN', 'o': 'KeyO',
+      'p': 'KeyP', 'q': 'KeyQ', 'r': 'KeyR', 's': 'KeyS', 't': 'KeyT',
+      'u': 'KeyU', 'v': 'KeyV', 'w': 'KeyW', 'x': 'KeyX', 'y': 'KeyY',
+      'z': 'KeyZ', 'ç': 'Semicolon',
+      '0': 'Digit0', '1': 'Digit1', '2': 'Digit2', '3': 'Digit3', '4': 'Digit4',
+      '5': 'Digit5', '6': 'Digit6', '7': 'Digit7', '8': 'Digit8', '9': 'Digit9',
+      ' ': 'Space', ',': 'Comma', '.': 'Period', '/': 'IntlRo', '?': 'IntlRo',
+      '-': 'Minus', '=': 'Equal'
+    };
+
+    const testedKeys = new Set();
+    const activeKeys = new Set();
+    const chatterKeys = new Set();
+    const lastReleaseTimes = {};
+    let currentTheme = 'dark';
+    let audioCtx = null;
+
+    function playSwitchSound(isDown = true) {
+      try {
+        if (!audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (AudioContextClass) audioCtx = new AudioContextClass();
+        }
+        if (!audioCtx) return;
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = isDown ? 'triangle' : 'sine';
+        osc.frequency.setValueAtTime(isDown ? 1380 : 880, now);
+        osc.frequency.exponentialRampToValueAtTime(isDown ? 260 : 180, now + 0.032);
+        gain.gain.setValueAtTime(isDown ? 0.14 : 0.07, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.036);
+      } catch (e) {
+        // Ignore audio restrictions before user gesture
+      }
+    }
+
+    function applyTheme(theme) {
+      currentTheme = theme === 'light' ? 'light' : 'dark';
+      const root = document.documentElement;
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (currentTheme === 'dark') {
+        root.classList.add('dark');
+        if (metaTheme) metaTheme.setAttribute('content', '#060911');
+      } else {
+        root.classList.remove('dark');
+        if (metaTheme) metaTheme.setAttribute('content', '#eef2f6');
+      }
+      try {
+        localStorage.setItem('kb_theme_preference', currentTheme);
+      } catch (e) {}
+    }
+
+    function toggleTheme() {
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    }
+
+    function getKeyClass(code) {
+      if (activeKeys.has(code)) return 'keycap-active';
+      if (chatterKeys.has(code)) return 'keycap-chatter';
+      if (testedKeys.has(code)) return 'keycap-tested';
+      return 'keycap-untested';
+    }
+
+    function renderKeyboard() {
+      const mount = document.getElementById('keyboardMount');
+      if (!mount) return;
+
+      let html = '<div class="grid grid-cols-12 gap-3.5 items-stretch">';
+
+      html += '<div class="col-span-8 flex flex-col gap-2">';
+      ABNT2_MAIN_ROWS.forEach((row, rIdx) => {
+        const heightClass = rIdx === 0 ? 'h-10' : 'h-12';
+        html += `<div class="flex items-stretch gap-1.5 w-full ${heightClass}">`;
+        row.forEach((item) => {
+          if (item.spacer) {
+            html += `<div style="flex: ${item.spacer} 1 0%;"></div>`;
+            return;
+          }
+          const stateClass = getKeyClass(item.code);
+          const modClass = item.mod ? 'keycap-mod' : '';
+          const subHtml = item.sub ? `<span class="text-[9px] opacity-65 font-normal leading-none mt-0.5">${item.sub}</span>` : '';
+          html += `
+            <button type="button"
+              data-key-code="${item.code}"
+              onclick="triggerVirtualKey('${item.code}')"
+              style="flex: ${item.w} 1 0%;"
+              class="keycap ${modClass} ${stateClass}">
+              <span>${item.top}</span>
+              ${subHtml}
+            </button>
+          `;
+        });
+        html += '</div>';
+      });
+      html += '</div>';
+
+      html += '<div class="col-span-4 flex flex-col gap-2">';
+      NAV_AND_NUMPAD_ROWS.forEach((row, rIdx) => {
+        const heightClass = rIdx === 0 ? 'h-10' : 'h-12';
+        html += `<div class="flex items-stretch gap-1.5 w-full ${heightClass}">`;
+        row.forEach((item) => {
+          if (item.spacer) {
+            html += `<div style="flex: ${item.spacer} 1 0%;"></div>`;
+            return;
+          }
+          const stateClass = getKeyClass(item.code);
+          const modClass = item.mod ? 'keycap-mod' : '';
+          const subHtml = item.sub ? `<span class="text-[9px] opacity-65 font-normal leading-none mt-0.5">${item.sub}</span>` : '';
+          html += `
+            <button type="button"
+              data-key-code="${item.code}"
+              onclick="triggerVirtualKey('${item.code}')"
+              style="flex: ${item.w} 1 0%;"
+              class="keycap ${modClass} ${stateClass}">
+              <span>${item.top}</span>
+              ${subHtml}
+            </button>
+          `;
+        });
+        html += '</div>';
+      });
+      html += '</div>';
+
+      html += '</div>';
+      mount.innerHTML = html;
+    }
+
+    function updateSingleKeyDOM(code) {
+      const elements = document.querySelectorAll(`[data-key-code="${code}"]`);
+      const cls = getKeyClass(code);
+      elements.forEach((el) => {
+        el.classList.remove('keycap-untested', 'keycap-active', 'keycap-tested', 'keycap-chatter', 'key-ripple-anim');
+        void el.offsetWidth;
+        el.classList.add(cls);
+        if (cls === 'keycap-active') {
+          el.classList.add('key-ripple-anim');
+        }
+      });
+    }
+
+    function updateLockLEDs(e) {
+      if (!e || typeof e.getModifierState !== 'function') return;
+      const numEl = document.getElementById('ledNumLock');
+      const capsEl = document.getElementById('ledCapsLock');
+      const scrollEl = document.getElementById('ledScrollLock');
+      if (numEl) numEl.className = 'led-dot ' + (e.getModifierState('NumLock') ? 'led-on' : 'led-off');
+      if (capsEl) capsEl.className = 'led-dot ' + (e.getModifierState('CapsLock') ? 'led-on' : 'led-off');
+      if (scrollEl) scrollEl.className = 'led-dot ' + (e.getModifierState('ScrollLock') ? 'led-on' : 'led-off');
+    }
+
+    function triggerVirtualKey(code) {
+      playSwitchSound(true);
+      activeKeys.add(code);
+      updateSingleKeyDOM(code);
+      setTimeout(() => {
+        activeKeys.delete(code);
+        testedKeys.add(code);
+        playSwitchSound(false);
+        updateSingleKeyDOM(code);
+      }, 140);
+    }
+
+    window.addEventListener('keydown', (e) => {
+      e.preventDefault();
+      updateLockLEDs(e);
+
+      let code = e.code || e.key;
+      if ((!code || code === 'Unidentified') && e.key) {
+        code = CHAR_TO_CODE_MAP[e.key.toLowerCase()] || code;
+      }
+      if (!code || code === 'Unidentified') return;
+
+      const now = performance.now();
+      if (!e.repeat && lastReleaseTimes[code] && (now - lastReleaseTimes[code]) < 28) {
+        chatterKeys.add(code);
+      }
+
+      if (!activeKeys.has(code)) {
+        activeKeys.add(code);
+        playSwitchSound(true);
+      }
+      updateSingleKeyDOM(code);
+    });
+
+    window.addEventListener('keyup', (e) => {
+      updateLockLEDs(e);
+      let code = e.code || e.key;
+      if ((!code || code === 'Unidentified') && e.key) {
+        code = CHAR_TO_CODE_MAP[e.key.toLowerCase()] || code;
+      }
+      if (!code || code === 'Unidentified') return;
+
+      lastReleaseTimes[code] = performance.now();
+      activeKeys.delete(code);
+      testedKeys.add(code);
+      playSwitchSound(false);
+      updateSingleKeyDOM(code);
+    });
+
+    window.addEventListener('blur', () => {
+      activeKeys.forEach((code) => testedKeys.add(code));
+      activeKeys.clear();
+      renderKeyboard();
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      let savedTheme = 'dark';
+      try {
+        const pref = localStorage.getItem('kb_theme_preference');
+        if (pref === 'light' || pref === 'dark') savedTheme = pref;
+      } catch (e) {}
+      applyTheme(savedTheme);
+      renderKeyboard();
+    });
+  </script>
+</body>
+</html>

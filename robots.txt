@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://testeteclado.online/sitemap.xml

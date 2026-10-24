@@ -1,0 +1,6 @@
+https://teste-de-teclado.pages.dev*
+  X-Robots-Tag: noindex
+
+https://testeteclado.online*
+  X-Robots-Tag: index, follow
+  Cache-Control: public, max-age=3600

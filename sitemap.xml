@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://testeteclado.online/</loc><priority>1.0</priority></url>
+  <url><loc>https://testeteclado.online/pt/</loc><priority>0.9</priority></url>
+  <url><loc>https://testeteclado.online/en/</loc><priority>0.9</priority></url>
+  <url><loc>https://testeteclado.online/es/</loc><priority>0.9</priority></url>
+  <url><loc>https://testeteclado.online/fr/</loc><priority>0.9</priority></url>
+  <url><loc>https://testeteclado.online/de/</loc><priority>0.9</priority></url>
+  <url><loc>https://testeteclado.online/it/</loc><priority>0.9</priority></url>
+  <url><loc>https://testeteclado.online/abnt2-ou-ansi/</loc><priority>0.7</priority></url>
+  <url><loc>https://testeteclado.online/teclado-com-chatter/</loc><priority>0.7</priority></url>
+  <url><loc>https://testeteclado.online/como-testar-teclado-mecanico/</loc><priority>0.7</priority></url>
+  <url><loc>https://testeteclado.online/teste-anti-ghosting/</loc><priority>0.7</priority></url>
+  <url><loc>https://testeteclado.online/teste-teclado-notebook/</loc><priority>0.7</priority></url>
+  <url><loc>https://testeteclado.online/teste-de-mouse/</loc><priority>0.7</priority></url>
+  <url><loc>https://testeteclado.online/sobre.html</loc><priority>0.5</priority></url>
+  <url><loc>https://testeteclado.online/privacidade.html</loc><priority>0.5</priority></url>
+  <url><loc>https://testeteclado.online/termos.html</loc><priority>0.5</priority></url>
+  <url><loc>https://testeteclado.online/contato.html</loc><priority>0.5</priority></url>
+</urlset>
